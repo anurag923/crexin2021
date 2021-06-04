@@ -1,0 +1,110 @@
+<div class="container-fluid p-0">
+    <div class="bg-pic">
+        <div class="col-md-12 text-center text-position-center">
+          <h1 class="text-light fs-30 fw-700">
+              RISE BY REACHING HEIGHTS
+          </h1>
+        </div>
+    </div>
+    <div class="bg">
+        <div class="grid">
+            <div class="row mgl-0 mgr-0">
+                <div class="col-md-12">
+                    <form>
+                        <!-- <div class="input-group">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                          <input type="search" class="form-control search" placeholder="Search for an Equipment">
+                        </div> -->
+                        <div class="crexin-search">
+                            <div class="search">
+                               <input type="text" class="searchTerm" placeholder="Search for an Equipment" (keyup)="search(search_categorie.value)" #search_categorie>
+                               <button type="button" class="searchButton">
+                                 <i class="fa fa-search"></i>
+                               </button>
+                            </div>
+                         </div>
+                      </form>
+                </div>
+            </div>
+            <div class="row mt-4 mgl-0 mgr-0">
+                <div class="col-md-2">
+                    <h1 class="fs-20 fw-700 pdl-10">
+                        Categories
+                    </h1>
+                </div>
+                <div class="col-md-10">
+                    <h1 class="fs-20 fw-700 pdl-10">
+                        All Categories
+                    </h1>
+                </div>
+            </div>
+            <div class="row mt-1 mgl-0 mgr-0">
+               <div class="col-md-2">
+                <!-- <div class="boder-bottom mgt-12 categories"  *ngFor="let categorie of allcategories;let id = index">
+                    <p><a (click)="categoriedetails(categorie.id)" style="cursor: pointer;">{{categorie.c_name}}</a></p>
+                </div> -->
+                <ul class="categories">
+                    <li class="fs-15 pdl-10 fw-700 crexin-text" *ngIf="c_active">All Categories</li>
+                    <li class="fs-15 pdl-10" *ngIf="c_unactive">All Categories</li>
+                    <li class="fs-15 pdl-10" (click)="subcategories(categorie.id,categorie.c_name)" *ngFor="let categorie of allcategories">
+                       <a>{{categorie.c_name}}</a>
+                    </li>
+                    <li class="fs-15 pdl-10" (click)="subcategories(categorie.id,categorie.c_name)" *ngFor="let categorie of searchcategories">
+                        <a>{{categorie.c_name}}</a>
+                    </li>
+                </ul>
+               </div>
+               <div class="col-md-10">
+                <div class="grid">
+                    <div class="row mgl-0 mgr-0">
+                        <div class="col-md-4 my-3" (click)="subcategories(categorie_image.id,categorie_image.c_name)" *ngFor="let categorie_image of allcategories">
+                             <div class="text-center crexin-product-images">
+                                 <img src="{{categorie_image.c_image}}" alt="" class="img-fluid" alt="Responsive image" (click)="subcategories(categorie.id)">
+                                 <h1 class="crexin-text mgb-0 mgt-10 fs-16 fw-700 text-center">{{categorie_image.c_name}}</h1>
+                             </div>
+                        </div>
+                     </div>
+                     <div class="row mgl-0 mgr-0">
+                        <div class="col-md-4 my-3" (click)="subcategories(categorie_image.id,categorie_image.c_name)" *ngFor="let categorie_image of searchcategories">
+                             <div class="text-center crexin-product-images">
+                                 <img src="{{categorie_image.c_image}}" alt="" class="img-fluid" alt="Responsive image" (click)="subcategories(categorie.id)">
+                                 <h1 class="crexin-text mgb-0 mgt-10 fs-16 fw-700 text-center">{{categorie_image.c_name}}</h1>
+                             </div>
+                        </div>
+                     </div>
+                    <!-- <div class="row mgl-0 mgr-0" *ngIf="firstcategorie">
+                        <div class="col-md-4 my-3" *ngFor="let firstcategoriedata of firstcategoriedatas">
+                             <div class="text-center crexin-product-images">
+                                 <img src="{{firstcategoriedata.equipment_image}}" alt="" class="img-fluid" alt="Responsive image" (click)="singleproduct(firstcategoriedata.id)">
+                                 <h1 class="crexin-text mgb-0 mgt-10 fs-16 fw-700 text-center">{{firstcategoriedata.equipment_name}}</h1>
+                             </div>
+                        </div>
+                     </div>
+                    <div class="row mgl-0 mgr-0">
+                        <div class="col-md-4 my-3" *ngFor="let product of products">
+                             <div class="text-center crexin-product-images">
+                                 <img src="{{product.equipment_image}}" alt="" class="img-fluid" alt="Responsive image" (click)="singleproduct(product.id)">
+                                 <h1 class="crexin-text mgb-0 mgt-10 fs-16 fw-700 text-center">{{product.equipment_name}}</h1>
+                             </div>
+                        </div>
+                    </div> -->
+                </div>
+                
+                <div *ngIf="loading" class="text-center">
+                    <h1 class="fs-15 fw-700">loading ...</h1>
+                </div>
+                <div class="d-flex justify-content-center" *ngIf="loading">
+                    <div class="spinner-border spinner" role="status">
+                        <span class="sr-only" id="loading"></span>
+                    </div>
+                </div>
+               </div>
+              
+            </div>
+        </div>
+    </div>
+</div>

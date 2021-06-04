@@ -1,0 +1,34 @@
+.on-going-booings{
+    background-color: #d0e8e9;
+}
+.scheduled-bookings{
+    background-color: #f6e8c3;
+}
+.completed-bookings{
+    background-color: #dcdcdc;
+}
+.complete-job-text{
+    color: #1766b8;
+}
+
+
+/* accordion */
+
+.accordion-header{
+    background-color: #ccc !important;
+    display: flex;
+    align-items: center;
+    padding: 5px 10px !important;
+    margin-bottom:15px !important;
+}
+.accordion-button{
+    border:none !important;
+    background-color: #ccc !important;
+    margin-left: auto !important;
+}
+.accordion-body{
+    margin-bottom: 15px !important;
+}
+.accordion-header h2{
+    color: #414a4c;
+}

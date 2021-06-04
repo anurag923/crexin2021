@@ -1,0 +1,64 @@
+.header-bg{
+    background-color: #ededed;
+}
+.check-radio{
+    background-color: #eaeaea;
+    padding: 20px 40px;
+}
+.table-bg{
+    background-color: #fbfbfb;
+}
+.details-bg{
+    background-color: #eeeeee;
+}
+.details-tab-bg{
+    background-color: #eeeeee;
+    /* padding: 10px; */
+}
+.form-control{
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid #ccc !important;
+    border-radius: 0px !important;
+}
+.checkout-img{
+    width: 200px !important;
+}
+.checkout{
+    margin: 40px;
+    margin-bottom: 20px;
+}
+@media (max-width:560px){
+    .checkout{
+        margin: 20px;
+    }
+    .check-radio{
+        padding: 20px;
+    }
+    .radio{
+        padding: 10px !important;
+    }
+}
+.radio{
+    padding: 30px;
+}
+.work-fields{
+    padding: 10px 40px;
+}
+@media screen and (min-width: 100px) and (max-width:550px) {
+    .amount{
+        padding: 10px !important;
+    }
+    .details{
+        padding: 10px !important;
+    }
+}
+.amount{
+  padding: 25px;
+}
+.details{
+    padding: 25px;
+}
+.paynow-btn{
+    padding: 5px 30px !important;
+}

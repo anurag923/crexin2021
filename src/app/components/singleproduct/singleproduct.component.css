@@ -1,0 +1,12 @@
+
+/* img{
+    height: 170px !important;
+    border-radius: 5%;
+    width: 250px !important;
+} */
+.form-control{
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid #ccc !important;
+    border-radius: 0px !important;
+}

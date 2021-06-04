@@ -1,0 +1,618 @@
+<div class="container-fluid p-0">
+    <div class="bg-pic">
+        <div class="col-md-12 text-center text-position-center">
+            <h1 class="text-light fs-30 fw-700">
+                RISE BY REACHING HEIGHTS
+            </h1>
+        </div>
+    </div>
+    <div class="checkout">
+        <div class="table-responsive">
+            <table class="table-bordered w-100">
+                <thead class="header-bg">
+                    <tr>
+                        <th class="text-center text-color fs-17 fw-700">Item</th>
+                        <th class="text-center text-color fs-17 fw-700">Date & Time</th>
+                        <th class="text-center text-color fs-17 fw-700">Amount</th>
+                        <th class="text-center text-color fs-17 fw-700">Paid Amount</th>
+                        <th class="text-center text-color fs-17 fw-700">Order Summary</th>
+                    </tr>
+                </thead>
+                <tbody class="table-bg">
+                    <tr>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                              <div class="checkout-img">
+                                <img src="{{subcategory_image}}" alt="" class="img-fluid">
+                                <p class="mt-2 fs-17 text-color fw-700 text-center">{{subcategory_name}}</p>
+                              </div>
+                             </div>
+                        </td>
+                        <td class="radio">
+                            <form>
+                                <div class="check-radio d-flex justify-content-between">
+                                    <div class="form-check">
+                                      <input class="form-check-input" [checked]='checked_hourly?true:false' (click)="hourly_function()" value="hourly" type="radio" name="flexRadioDefault" id="hourly">
+                                      <label class="form-check-label fs-15 fw-700 text-color" for="flexRadioDefault1">
+                                        Hourly
+                                      </label>
+                                    </div>
+                                    <div class="form-check mgl-5 mgr-5">
+                                      <input class="form-check-input" [checked]='checked_daily?true:false' (click)="daily_function()" value="daily" type="radio" name="flexRadioDefault" id="daily">
+                                      <label class="form-check-label fs-15 fw-700 text-color" for="flexRadioDefault1" >
+                                        Daily
+                                      </label>
+                                    </div>
+                                    <div class="form-check">
+                                      <input class="form-check-input" [checked]='checked_weekly?true:false' (click)="weekly_function()" value="weekly" type="radio" name="flexRadioDefault" id="weekly">
+                                      <label class="form-check-label fs-15 fw-700 text-color" for="flexRadioDefault1">
+                                        Weekly
+                                      </label>
+                                    </div>
+                                </div>
+                            </form>
+                              <div class="work-options" *ngIf="hourly">
+                                <div class="d-flex align-items-center">
+                                 <h1 class="fs-20 fw-700 mgb-0 mgr-5">Hourly</h1><span class="fs-12 text-danger fw-700">(Min. 3hrs & Max. 6hrs)</span>
+                                </div>
+                                <form [formGroup]="Hourly">
+                                <div class="row mgl-0 mgr-0 mt-1">
+                                  <div class="form-group col-md-4">
+                                    <label for="" class="fs-15 fw-700 text-color">No of Hours</label>
+                                    <select name="" id="" (click)="nohours()" class="form-control bdr" formControlName="no_hours" [(ngModel)]="no_hours" [ngClass]="{ 'is-invalid': submitted_hourly  && h.no_hours.errors }">
+                                       <option value="3">3hrs</option>
+                                       <option value="4">4hrs</option>
+                                       <option value="5">5hrs</option>
+                                       <option value="6">6hrs</option>
+                                    </select>
+                                    <div *ngIf="submitted_hourly && h.no_hours.errors" class="invalid-feedback">
+                                     <div *ngIf="h.no_hours.errors.required" class="fs-15 fw-700">No of Hours is required</div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="" class="fs-15 fw-700 text-color">Start Date</label>
+                                    <input type="date" min="{{book_date1}}" (click)="getcurrentdate()" placeholder="23-04-21" class="form-control p-0" formControlName="h_startdate" [(ngModel)]="h_startdate" [ngClass]="{ 'is-invalid': submitted_hourly && h.h_startdate.errors }">
+                                    <div *ngIf="submitted_hourly  && h.h_startdate.errors" class="invalid-feedback">
+                                     <div *ngIf="h.h_startdate.errors.required" class="fs-15 fw-700">Start Date is required</div>
+                                    </div>
+                                   </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="" class="fs-15 fw-700 text-color">Start Time</label>
+                                    <select class="form-control p-0" aria-label="Default select example" [(ngModel)]="h_starttime" formControlName="h_starttime" [ngClass]="{ 'is-invalid': submitted_hourly  && h.h_starttime.errors }">
+                                      <option selected>Select time</option>
+                                      <option value="1am - 2am">1am - 2am</option>
+                                      <option value="2am - 3am">2am - 3am</option>
+                                      <option value="3am - 4am">3am - 4am</option>
+                                      <option value="4am - 5am">4am - 5am</option>
+                                      <option value="5am - 6am">5am - 6am</option>
+                                      <option value="6am - 7am">6am - 7am</option>
+                                      <option value="7am - 8am">7am - 8am</option>
+                                      <option value="8am - 9am">8am - 9am</option>
+                                      <option value="9am - 10am">9am - 10am</option>
+                                      <option value="10am - 11am">10am - 11am</option>
+                                      <option value="11am - 12am">11am - 12am</option>
+                                      <option value="1pm - 2pm">1pm - 2pm</option>
+                                      <option value="2pm - 3pm">2pm - 3pm</option>
+                                      <option value="3pm - 4pm">3pm - 4pm</option>
+                                      <option value="4pm - 5pm">4pm - 5pm</option>
+                                      <option value="5pm - 6pm">5pm - 6pm</option>
+                                      <option value="6pm - 7pm">6pm - 7pm</option>
+                                      <option value="7PM - 8PM">7pm - 8pm</option>
+                                      <option value="8PM - 9PM">8pm - 9pm</option>
+                                      <option value="9PM - 10PM">9pm - 10pm</option>
+                                      <option value="10pm - 11pm">10pm - 11pm</option>
+                                      <option value="11pm - 12pm">11pm - 12pm</option>
+                                     </select>
+                                    <!-- <input type="time" class="form-control" placeholder="7AM to 6PM" [(ngModel)]="h_starttime" formControlName="h_starttime" [ngClass]="{ 'is-invalid': submitted_hourly  && h.h_starttime.errors }"> -->
+                                    <div *ngIf="submitted_hourly  && h.h_starttime.errors" class="invalid-feedback">
+                                     <div *ngIf="h.h_starttime.errors.required" class="fs-15 fw-700">Start Time is required</div>
+                                    </div>
+                                   </div>
+                                </div>
+                                </form>
+                              </div>
+                              <div class="work-options" *ngIf="daily">
+                               <div class="d-flex align-items-center">
+                                 <h1 class="fs-20 fw-700 mgb-0 mgr-5">Daily</h1><span class="fs-12 text-danger fw-700">(Maximum No of hrs: 12Hours)</span>
+                                </div>
+                                <form [formGroup]="Daily">
+                                <div class="row mgl-0 mgr-0">
+                                  <div class="form-group col-md-4">
+                                    <label for="" class="fs-15 fw-700 text-color">No of Days</label>
+                                    <select name="" id="" class="form-control" (click)="d_days()" formControlName="no_days" [(ngModel)]="no_days" [ngClass]="{ 'is-invalid': submitted_daily && d.no_days.errors }">
+                                       <option value="3">3Days</option>
+                                       <option value="4">4Days</option>
+                                       <option value="5">5Days</option>
+                                       <option value="6">6Days</option>
+                                       <option value="7">7Days</option>
+                                       <option value="8">8Days</option>
+                                       <option value="9">9Days</option>
+                                       <option value="10">10Days</option>
+                                    </select>
+                                    <div *ngIf="submitted_daily && d.no_days.errors" class="invalid-feedback">
+                                     <div *ngIf="d.no_days.errors.required" class="fs-15 fw-700">No of Days is required</div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="" class="fs-15 fw-700 text-color">Start Date</label>
+                                    <input type="date" min="{{book_date1}}" (click)="getcurrentdate()" placeholder="23-04-21" class="form-control pd-0" [(ngModel)]="d_startdate" formControlName="d_startdate" (change)="enddata(startdate.value)" [ngClass]="{ 'is-invalid': submitted_daily && d.d_startdate.errors }" #startdate>
+                                    <div *ngIf="submitted_daily && d.d_startdate.errors" class="invalid-feedback">
+                                     <div *ngIf="d.d_startdate.errors.required" class="fs-15 fw-700">Start Date is required</div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="" class="fs-15 fw-700 text-color">Start Time</label>
+                                    <!-- <input [ngxTimepicker]="picker" (change)="endtime(starttime.value)" #starttime>
+                                    <ngx-material-timepicker #picker></ngx-material-timepicker> -->
+                                    <select class="form-control p-0" aria-label="Default select example" [(ngModel)]="d_starttime" formControlName="d_starttime" (change)="endtime(starttime.value)" [ngClass]="{ 'is-invalid': submitted_daily && d.d_starttime.errors }" #starttime>
+                                      <option selected>Select time</option>
+                                      <option value="1am - 2am">1am - 2am</option>
+                                      <option value="2am - 3am">2am - 3am</option>
+                                      <option value="3am - 4am">3am - 4am</option>
+                                      <option value="4am - 5am">4am - 5am</option>
+                                      <option value="5am - 6am">5am - 6am</option>
+                                      <option value="6am - 7am">6am - 7am</option>
+                                      <option value="7am - 8am">7am - 8am</option>
+                                      <option value="8am - 9am">8am - 9am</option>
+                                      <option value="9am - 10am">9am - 10am</option>
+                                      <option value="10am - 11am">10am - 11am</option>
+                                      <option value="11am - 12am">11am - 12am</option>
+                                      <option value="1pm - 2pm">1pm - 2pm</option>
+                                      <option value="2pm - 3pm">2pm - 3pm</option>
+                                      <option value="3pm - 4pm">3pm - 4pm</option>
+                                      <option value="4pm - 5pm">4pm - 5pm</option>
+                                      <option value="5pm - 6pm">5pm - 6pm</option>
+                                      <option value="6pm - 7pm">6pm - 7pm</option>
+                                      <option value="7PM - 8PM">7pm - 8pm</option>
+                                      <option value="8PM - 9PM">8pm - 9pm</option>
+                                      <option value="9PM - 10PM">9pm - 10pm</option>
+                                      <option value="10pm - 11pm">10pm - 11pm</option>
+                                      <option value="11pm - 12pm">11pm - 12pm</option>
+                                     </select>
+                                    <!-- <input type="time" class="form-control" placeholder="7AM to 6PM" [(ngModel)]="d_starttime" formControlName="d_starttime" (change)="endtime(starttime.value)" [ngClass]="{ 'is-invalid': submitted_daily && d.d_starttime.errors }" #starttime> -->
+                                    <div *ngIf="submitted_daily && d.d_starttime.errors" class="invalid-feedback" >
+                                     <div *ngIf="d.d_starttime.errors.required" class="fs-15 fw-700">Start Time is required</div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mgl-0 mgr-0">
+                                  <div class="col-md-4"></div>
+                                 <div class="form-group col-md-4">
+                                   <label for="" class="fs-15 fw-700">End Date</label>
+                                   <input type="date" placeholder="23-04-21" class="form-control p-0" value="{{d_enddate}}" readonly>
+                                   <!-- <div *ngIf="submitted_daily && d.d_enddate.errors" class="invalid-feedback" >
+                                     <div *ngIf="d.d_enddate.errors.required" class="fs-15 fw-700">End Date is required</div>
+                                   </div> -->
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                   <label for="" class="fs-15 fw-700">End Time</label>
+                                   <input type="text" class="form-control" placeholder="7AM to 6PM" value="{{d_endtime}}" readonly>
+                                   <!-- <div *ngIf="submitted_daily && d.d_endtime.errors" class="invalid-feedback">
+                                     <div *ngIf="d.d_endtime.errors.required" class="fs-15 fw-700">End Time is required</div>
+                                   </div> -->
+                                  </div>
+                                </div>
+                               </form>
+                              </div>
+                              <div class="work-options" *ngIf="weekly">
+                               <div class="d-flex align-items-center">
+                                 <h1 class="fs-20 fw-700 mgb-0 mgr-5">Weekly</h1><span class="fs-12 text-danger fw-700">(Total No of hrs:60hrs)</span>
+                                </div>
+                                <form [formGroup]="Weekly">
+                                <div class="row mgl-0 mgr-0">
+                                  <div class="form-group col-md-4">
+                                    <label for="" class="fs-15 fw-700 text-color">No of Weeks</label>
+                                    <select name="" (click)="w_days()" id="" class="form-control" formControlName="no_weeks" [(ngModel)]="no_weeks" [ngClass]="{ 'is-invalid': submitted_weekly && w.no_weeks.errors }">
+                                      <option value="1">1Weeks</option>
+                                      <option value="2">2Weeks</option>
+                                      <option value="3">3Weeks</option>
+                                      <option value="4">4Weeks</option>
+                                      <option value="5">5Weeks</option>
+                                      <option value="6">6Weeks</option>
+                                      <option value="7">7Weeks</option>
+                                      <option value="8">8Weeks</option>
+                                      <option value="9">9Weeks</option>
+                                      <option value="10">10Weeks</option>
+                                    </select>
+                                   <div *ngIf="submitted_weekly  && w.no_weeks.errors" class="invalid-feedback">
+                                     <div *ngIf="w.no_weeks.errors.required" class="fs-15 fw-700">No of Weeks is required</div>
+                                   </div>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="" class="fs-15 fw-700 text-color">Start Date</label>
+                                    <input type="date" min="{{book_date1}}" (click)="getcurrentdate()" placeholder="23-04-21" class="form-control pd-0" [(ngModel)]="w_startdate" formControlName="w_startdate" [ngClass]="{ 'is-invalid': submitted_weekly  && w.w_startdate.errors }" (change)="w_end_date(startdate.value)" #startdate>
+                                     <div *ngIf="submitted_weekly  && w.w_startdate.errors" class="invalid-feedback">
+                                       <div *ngIf="w.w_startdate.errors.required" class="fs-15 fw-700">Start Date is required</div>
+                                     </div>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="" class="fs-15 fw-700 text-color">Start Time</label>
+                                    <select class="form-control p-0" aria-label="Default select example" class="form-control" placeholder="7AM to 6PM" [(ngModel)]="w_starttime" formControlName="w_starttime" [ngClass]="{ 'is-invalid': submitted_weekly  && w.w_starttime.errors }" (change)="w_end_time(starttime.value)" #starttime>
+                                      <option selected>Select time</option>
+                                      <option value="1am - 2am">1am - 2am</option>
+                                      <option value="2am - 3am">2am - 3am</option>
+                                      <option value="3am - 4am">3am - 4am</option>
+                                      <option value="4am - 5am">4am - 5am</option>
+                                      <option value="5am - 6am">5am - 6am</option>
+                                      <option value="6am - 7am">6am - 7am</option>
+                                      <option value="7am - 8am">7am - 8am</option>
+                                      <option value="8am - 9am">8am - 9am</option>
+                                      <option value="9am - 10am">9am - 10am</option>
+                                      <option value="10am - 11am">10am - 11am</option>
+                                      <option value="11am - 12am">11am - 12am</option>
+                                      <option value="1pm - 2pm">1pm - 2pm</option>
+                                      <option value="2pm - 3pm">2pm - 3pm</option>
+                                      <option value="3pm - 4pm">3pm - 4pm</option>
+                                      <option value="4pm - 5pm">4pm - 5pm</option>
+                                      <option value="5pm - 6pm">5pm - 6pm</option>
+                                      <option value="6pm - 7pm">6pm - 7pm</option>
+                                      <option value="7PM - 8PM">7pm - 8pm</option>
+                                      <option value="8PM - 9PM">8pm - 9pm</option>
+                                      <option value="9PM - 10PM">9pm - 10pm</option>
+                                      <option value="10pm - 11pm">10pm - 11pm</option>
+                                      <option value="11pm - 12pm">11pm - 12pm</option>
+                                     </select>
+                                    <!-- <input type="time" class="form-control" placeholder="7AM to 6PM" [(ngModel)]="w_starttime" formControlName="w_starttime" [ngClass]="{ 'is-invalid': submitted_weekly  && w.w_starttime.errors }" (change)="w_end_time(starttime.value)" #starttime> -->
+                                    <div *ngIf="submitted_weekly  && w.w_starttime.errors" class="invalid-feedback">
+                                     <div *ngIf="w.w_starttime.errors.required" class="fs-15 fw-700">Start Time is required</div>
+                                   </div>
+                                  </div>
+                                </div>
+                                <div class="row mgl-0 mgr-0">
+                                  <div class="col-md-4"></div>
+                                 <div class="form-group col-md-4">
+                                   <label for="" class="fs-15 fw-700 text-color">End Date</label>
+                                   <input type="date" placeholder="23-04-21" class="form-control pd-0" value="{{w_enddate}}" readonly>
+                                   <!-- <input type="date" placeholder="23-04-21" class="form-control pd-0" value="{{weekenddate}}"> -->
+                                   <!-- <div *ngIf="submitted_weekly  && w.w_starttime.errors" class="invalid-feedback">
+                                     <div *ngIf="w.w_starttime.errors.required" class="fs-15 fw-700">Start Time is required</div>
+                                   </div> -->
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                   <label for="" class="fs-15 fw-700 text-color">End Time</label>
+                                   <input type="text" class="form-control" placeholder="" value="{{w_endtime}}" readonly>
+                                   <!-- <input type="time" class="form-control" placeholder="7AM to 6PM" value="{{weekendtime}}"> -->
+                                   <!-- <div *ngIf="submitted_weekly  && w.w_endtime.errors" class="invalid-feedback">
+                                     <div *ngIf="w.w_endtime.errors.required" class="fs-15 fw-700">End Time is required</div>
+                                   </div> -->
+                                  </div>
+                                </div>
+                               </form>
+                              </div>
+                        </td>
+                        <td class="w100">
+                            <div class="d-flex align-items-center">
+                                <h3 class="mgb-0 mgr-2" *ngIf="hourly"><span class="fs-17 text-color fw-700">₹ {{h_sub_total}} </span>
+                                </h3>
+                                <h3 class="mgb-0 mgr-2" *ngIf="daily"><span class="fs-17 text-color fw-700">₹ {{d_total_days_amount}} </span>
+                                </h3>
+                                <h3 class="mgb-0 mgr-2" *ngIf="weekly"><span class="fs-17 text-color fw-700">₹ {{w_total_weeks_amount}} </span>
+                                </h3>
+                                <a>
+                                    <i class="fa fa-trash text-danger fs-20 fw-700 cursor-pointer"></i></a>
+                            </div>
+                        </td>
+                        <td class="w100">
+                          <div class="d-flex align-items-center">
+                              <h3 class="mgb-0 mgr-2" *ngIf="hourly"><span class="fs-17 text-color fw-700">₹ {{h_sub_total}} </span>
+                              </h3>
+                              <h3 class="mgb-0 mgr-2" *ngIf="daily"><span class="fs-17 text-color fw-700">₹ {{d_paid_amount}} </span>
+                              </h3>
+                              <h3 class="mgb-0 mgr-2" *ngIf="weekly"><span class="fs-17 text-color fw-700">₹ {{w_paid_amount}} </span>
+                              </h3>
+                              <a>
+                                  <i class="fa fa-trash text-danger fs-20 fw-700 cursor-pointer"></i></a>
+                          </div>
+                      </td>
+                        <td class="amount">
+                            <h1 *ngIf="hourly"><span class="fs-17 text-color fw-700 mr-1">Sub Total:</span><span class="fs-17 text-color fw-700">₹ {{h_sub_total}} </span></h1>
+                            <h1 *ngIf="daily"><span class="fs-17 text-color fw-700 mr-1">Sub Total:</span><span class="fs-17 text-color fw-700">₹ {{d_total_days_amount}} </span></h1>
+                            <h1 *ngIf="weekly"><span class="fs-17 text-color fw-700 mr-1">Sub Total:</span><span class="fs-17 text-color fw-700">₹ {{w_total_weeks_amount}} </span></h1>
+                            <h1><span class="fs-17 text-color fw-700 mr-1">GST Tax:</span><span class="fs-17 text-color fw-700">0</span></h1>
+                            <hr>
+                            <h1 *ngIf="hourly"><span class="fs-17 text-color fw-700 mr-1">Grand Total:</span><span class="fs-17 text-color fw-700">₹ {{h_grandtotal}}</span></h1>
+                            <h1 *ngIf="daily"><span class="fs-17 text-color fw-700 mr-1">Grand Total:</span><span class="fs-17 text-color fw-700">₹ {{d_grandtotal}}</span></h1>
+                            <h1 *ngIf="weekly"><span class="fs-17 text-color fw-700 mr-1">Grand Total:</span><span class="fs-17 text-color fw-700">₹ {{w_grandtotal}}</span></h1>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-6 d-flex align-items-end">
+                <h1 class="fs-18 fw-700 mgb-0 crexin-text">Customer Rental Details</h1>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                <h1 class="fs-15 fw-700 mgb-0 text-danger"  *ngIf="hourly">For hourly orders total amount should be paid at the time of booking*</h1>
+                <h1 class="fs-15  fw-700 mgb-0 text-danger" *ngIf="daily">For daily orders 10% of the total order value should be paid at the time of booking*</h1>
+                <h1 class="fs-15  fw-700 mgb-0 text-danger"  *ngIf="weekly">For weekly orders 20% of the total order value should be paid at the time of booking*</h1>
+            </div>
+        </div>
+        <!-- <div class="table-responsive mt-3">
+            <table class="table-bordered w-100">
+                <thead class="details-bg">
+                    <tr>
+                        <th class="text-center text-color fs-17 fw-700">General Details</th>
+                        <th class="text-center text-color fs-17 fw-700">Site Details</th>
+                        <th class="text-center text-color fs-17 fw-700">Billing Information</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="details">
+                            <form [formGroup]="General_Details">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Name" class="form-control" formControlName="name"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                      <div *ngIf="f.name.errors.required" class="fs-15 fw-700">Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" placeholder="Contact Number" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }">
+                                    <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                                      <div *ngIf="f.mobile.errors.required" class="fs-15 fw-700">Mobile Number is required</div>
+                                      <div *ngIf="f.mobile.errors.pattern" class="fs-15 fw-700">Mobile Number must be at 10 digits required</div>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                        <td class="details">
+                            <form [formGroup]="Site_Details">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Site Co-Ordinator Name" class="form-control" formControlName="coordinator_name" [ngClass]="{ 'is-invalid': submitted && s.coordinator_name.errors }">
+                                    <div *ngIf="submitted && s.coordinator_name.errors" class="invalid-feedback">
+                                      <div *ngIf="s.coordinator_name.errors.required" class="fs-15 fw-700">Site Co-Ordinator Name is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" placeholder="Contact Number" class="form-control" formControlName="contact_number" [ngClass]="{ 'is-invalid': submitted && s.contact_number.errors }">
+                                    <div *ngIf="submitted && s.contact_number.errors" class="invalid-feedback">
+                                      <div *ngIf="s.contact_number.errors.required" class="fs-15 fw-700">Contact Number is required</div>
+                                      <div *ngIf="s.contact_number.errors.pattern" class="fs-15 fw-700">Contact Number must be at 10 digits required</div>
+                                    </div>
+                                  </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Address Line 1" class="form-control" formControlName="address_one" [ngClass]="{ 'is-invalid': submitted && s.address_one.errors }">
+                                    <div *ngIf="submitted && s.address_one.errors" class="invalid-feedback">
+                                      <div *ngIf="s.address_one.errors.required" class="fs-15 fw-700">Address Line 1 is required</div>
+                                    </div>
+                                  </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Address Line 2" class="form-control" formControlName="address_two" [ngClass]="{ 'is-invalid': submitted && s.address_two.errors }">
+                                    <div *ngIf="submitted && s.address_two.errors" class="invalid-feedback">
+                                      <div *ngIf="s.address_two.errors.required" class="fs-15 fw-700">Address Line 2 is required</div>
+                                    </div>
+                                  </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Landmark" class="form-control" formControlName="landmark" [ngClass]="{ 'is-invalid': submitted && s.landmark.errors }">
+                                    <div *ngIf="submitted && s.landmark.errors" class="invalid-feedback">
+                                      <div *ngIf="s.landmark.errors.required" class="fs-15 fw-700">Landmark is required</div>
+                                    </div>
+                                  </div>
+                                <div class="form-group">
+                                    <input type="number" placeholder="Pincode" class="form-control" formControlName="pincode" [ngClass]="{ 'is-invalid': submitted && s.pincode.errors }" maxlength="6">
+                                    <div *ngIf="submitted && s.pincode.errors" class="invalid-feedback">
+                                      <div *ngIf="s.pincode.errors.required" class="fs-15 fw-700">Pincode is required</div>
+                                      <div *ngIf="s.pincode.errors.pattern" class="fs-15 fw-700">pincode must be at 6 digits required</div>
+                                    </div>
+                                  </div>
+                            </form>
+                        </td>
+                        <td class="details">
+                            <form [formGroup]="Billing_Information">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Company Name" class="form-control" formControlName="c_name" [ngClass]="{ 'is-invalid': submitted && b.c_name.errors }">
+                                    <div *ngIf="submitted && b.c_name.errors" class="invalid-feedback">
+                                      <div *ngIf="b.c_name.errors.required" class="fs-15 fw-700">Company Name is required</div>
+                                    </div>
+                                  </div>
+                                <div class="form-group">
+                                    <input type="number" placeholder="GSTN Number" class="form-control" formControlName="gst_number" [ngClass]="{ 'is-invalid': submitted && b.gst_number.errors }">
+                                    <div *ngIf="submitted && b.gst_number.errors" class="invalid-feedback">
+                                      <div *ngIf="b.gst_number.errors.required" class="fs-15 fw-700">GST Number is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" placeholder="Email id" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && b.email.errors }">
+                                    <div *ngIf="submitted && b.email.errors" class="invalid-feedback">
+                                      <div *ngIf="b.email.errors.required" class="fs-15 fw-700">Email id is required</div>
+                                      <div *ngIf="b.email.errors.email" class="fs-15 fw-700">Please provide a valid email address</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="Company Address" class="form-control" formControlName="c_address" [ngClass]="{ 'is-invalid': submitted && b.c_address.errors }">
+                                    <div *ngIf="submitted && b.c_address.errors" class="invalid-feedback">
+                                      <div *ngIf="b.c_address.errors.required" class="fs-15 fw-700">Company Address is required</div>
+                                    </div>
+                                  </div>
+                                <div class="form-group">
+                                    <input type="number" placeholder="Pincode" class="form-control" formControlName="p_code" [ngClass]="{ 'is-invalid': submitted && b.p_code.errors }">
+                                    <div *ngIf="submitted && b.p_code.errors" class="invalid-feedback">
+                                      <div *ngIf="b.p_code.errors.required" class="fs-15 fw-700">Pincode is required</div>
+                                      <div *ngIf="b.p_code.errors.pattern" class="fs-15 fw-700">pincode must be at 6 digits required</div>
+                                    </div>
+                                  </div>
+                                <div class="form-group">
+                                    <input type="text" placeholder="City" class="form-control" formControlName="city" [ngClass]="{ 'is-invalid': submitted && b.city.errors }">
+                                    <div *ngIf="submitted && b.city.errors" class="invalid-feedback">
+                                      <div *ngIf="b.city.errors.required" class="fs-15 fw-700">City is required</div>
+                                    </div>
+                                  </div>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>  -->
+           <div class="row">
+             <!-- <div class="col-md-4">
+              <li class="nav-item">
+                <a class="nav-link active" data-toggle="pill" href="#home">Home</a>
+              </li>
+             </div>
+             <div class="col-md-4">
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#menu1">Menu 1</a>
+              </li>
+             </div>
+             <div class="col-md-4">
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="pill" href="#menu2">Menu 2</a>
+              </li>
+             </div> -->
+            <div class="col-md-8 offset-md-2 col-xs-12 col-sm-12">
+              <ul class="nav nav-pills details-tab-bg" role="tablist">
+                <li class="nav-item fs-15 fw-700 text-color">
+                  <a class="nav-link active" data-toggle="pill" href="#General_Details">General Details</a>
+                </li>
+                <li class="nav-item fs-15 fw-700 text-color">
+                  <a class="nav-link" data-toggle="pill" href="#Site_Details">Site Details</a>
+                </li>
+                <li class="nav-item fs-15 fw-700 text-color">
+                  <a class="nav-link" data-toggle="pill" href="#Billing_Information">Billing Information</a>
+                </li>
+              </ul>
+            </div>
+          
+              <div class="col-md-8 offset-md-2 col-xs-12 col-sm-12">
+                <div class="tab-content">
+                  <div id="General_Details" class="container tab-pane active"><br>
+                    <form [formGroup]="General_Details">
+                      <div class="form-group">
+                          <input type="text" placeholder="Name" [(ngModel)]="name" class="form-control" formControlName="name"  [ngClass]="{ 'is-invalid': submitted && f.name.errors }" readonly>
+                          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                            <div *ngIf="f.name.errors.required" class="fs-15 fw-700">Name is required</div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <input type="tel" placeholder="Contact Number" [(ngModel)]="mobile" class="form-control" formControlName="mobile" [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" readonly>
+                          <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                            <div *ngIf="f.mobile.errors.required" class="fs-15 fw-700">Mobile Number is required</div>
+                            <div *ngIf="f.mobile.errors.pattern" class="fs-15 fw-700">Mobile Number must be at 10 digits required</div>
+                          </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div id="Site_Details" class="container tab-pane fade"><br>
+                    <form [formGroup]="Site_Details">
+                      <div class="form-group">
+                          <input type="text" placeholder="Site Co-Ordinator Name" class="form-control" formControlName="coordinator_name" [ngClass]="{ 'is-invalid': submitted && s.coordinator_name.errors }">
+                          <div *ngIf="submitted && s.coordinator_name.errors" class="invalid-feedback">
+                            <div *ngIf="s.coordinator_name.errors.required" class="fs-15 fw-700">Site Co-Ordinator Name is required</div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <input type="tel" placeholder="Contact Number" class="form-control" formControlName="contact_number" [ngClass]="{ 'is-invalid': submitted && s.contact_number.errors }">
+                          <div *ngIf="submitted && s.contact_number.errors" class="invalid-feedback">
+                            <div *ngIf="s.contact_number.errors.required" class="fs-15 fw-700">Contact Number is required</div>
+                            <div *ngIf="s.contact_number.errors.pattern" class="fs-15 fw-700">Contact Number must be at 10 digits required</div>
+                          </div>
+                        </div>
+                      <div class="form-group">
+                          <input type="text" placeholder="Address Line 1" class="form-control" formControlName="address_one" [ngClass]="{ 'is-invalid': submitted && s.address_one.errors }">
+                          <div *ngIf="submitted && s.address_one.errors" class="invalid-feedback">
+                            <div *ngIf="s.address_one.errors.required" class="fs-15 fw-700">Address Line 1 is required</div>
+                          </div>
+                        </div>
+                      <div class="form-group">
+                          <input type="text" placeholder="Address Line 2" class="form-control" formControlName="address_two" [ngClass]="{ 'is-invalid': submitted && s.address_two.errors }">
+                          <div *ngIf="submitted && s.address_two.errors" class="invalid-feedback">
+                            <div *ngIf="s.address_two.errors.required" class="fs-15 fw-700">Address Line 2 is required</div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" placeholder="Landmark" class="form-control" formControlName="landmark" [ngClass]="{ 'is-invalid': submitted && s.landmark.errors }">
+                        <div *ngIf="submitted && s.landmark.errors" class="invalid-feedback">
+                          <div *ngIf="s.landmark.errors.required" class="fs-15 fw-700">Landmark is required</div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <input type="number" placeholder="Pincode" class="form-control" formControlName="pincode" [ngClass]="{ 'is-invalid': submitted && s.pincode.errors }" maxlength="6">
+                          <div *ngIf="submitted && s.pincode.errors" class="invalid-feedback">
+                            <div *ngIf="s.pincode.errors.required" class="fs-15 fw-700">Pincode is required</div>
+                            <div *ngIf="s.pincode.errors.pattern" class="fs-15 fw-700">pincode must be at 6 digits required</div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" placeholder="City" class="form-control" formControlName="city" [ngClass]="{ 'is-invalid': submitted && s.city.errors }">
+                        <div *ngIf="submitted && b.city.errors" class="invalid-feedback">
+                          <div *ngIf="b.city.errors.required" class="fs-15 fw-700">City is required</div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" placeholder="State" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': submitted && s.state.errors }">
+                        <div *ngIf="submitted && s.state.errors" class="invalid-feedback">
+                          <div *ngIf="s.state.errors.required" class="fs-15 fw-700">State is required</div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div id="Billing_Information" class="container tab-pane fade"><br>
+                    <form [formGroup]="Billing_Information">
+                      <div class="form-group">
+                          <input type="text" placeholder="Company Name" class="form-control" formControlName="c_name" [ngClass]="{ 'is-invalid': submitted && b.c_name.errors }">
+                          <div *ngIf="submitted && b.c_name.errors" class="invalid-feedback">
+                            <div *ngIf="b.c_name.errors.required" class="fs-15 fw-700">Company Name is required</div>
+                          </div>
+                        </div>
+                      <div class="form-group">
+                          <input type="number" placeholder="GSTN Number" class="form-control" formControlName="gst_number" [ngClass]="{ 'is-invalid': submitted && b.gst_number.errors }">
+                          <div *ngIf="submitted && b.gst_number.errors" class="invalid-feedback">
+                            <div *ngIf="b.gst_number.errors.required" class="fs-15 fw-700">GST Number is required</div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <input type="email" placeholder="Email id" class="form-control" formControlName="email" [ngClass]="{ 'is-invalid': submitted && b.email.errors }">
+                          <div *ngIf="submitted && b.email.errors" class="invalid-feedback">
+                            <div *ngIf="b.email.errors.required" class="fs-15 fw-700">Email id is required</div>
+                            <div *ngIf="b.email.errors.email" class="fs-15 fw-700">Please provide a valid email address</div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <input type="text" placeholder="Company Address" class="form-control" formControlName="c_address" [ngClass]="{ 'is-invalid': submitted && b.c_address.errors }">
+                          <div *ngIf="submitted && b.c_address.errors" class="invalid-feedback">
+                            <div *ngIf="b.c_address.errors.required" class="fs-15 fw-700">Company Address is required</div>
+                          </div>
+                        </div>
+                      <div class="form-group">
+                          <input type="number" placeholder="Pincode" class="form-control" formControlName="p_code" [ngClass]="{ 'is-invalid': submitted && b.p_code.errors }">
+                          <div *ngIf="submitted && b.p_code.errors" class="invalid-feedback">
+                            <div *ngIf="b.p_code.errors.required" class="fs-15 fw-700">Pincode is required</div>
+                            <div *ngIf="b.p_code.errors.pattern" class="fs-15 fw-700">pincode must be at 6 digits required</div>
+                          </div>
+                        </div>
+                      <div class="form-group">
+                          <input type="text" placeholder="City" class="form-control" formControlName="city" [ngClass]="{ 'is-invalid': submitted && b.city.errors }">
+                          <div *ngIf="submitted && b.city.errors" class="invalid-feedback">
+                            <div *ngIf="b.city.errors.required" class="fs-15 fw-700">City is required</div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <input type="text" placeholder="State" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': submitted && b.state.errors }">
+                        <div *ngIf="submitted && b.state.errors" class="invalid-feedback">
+                          <div *ngIf="b.state.errors.required" class="fs-15 fw-700">State is required</div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>              
+              </div>
+           </div>
+           <div class="row my-3 mgl-0 mgr-0">
+             <div class="col-md-6">
+               <div mat-raised-button #tooltip="matTooltip"
+               matTooltip="Click here to add booking to your favourites"
+               matTooltipPosition="above" matTooltipClass="custom-tooltip">
+                <a type="button" class="cursor-pointer d-flex align-items-center" (click)="favourites()">
+                  <i class="fa fa-heart text-danger fs-20 fw-700 mr-2"></i>
+                  <h1 class="text-danger fs-20 fw-700 mgb-0">Add to Favourite</h1>
+                </a>
+               </div>
+             </div>
+               <div class="col-md-6 d-flex justify-content-end">
+                   <button class="btn btn fs-15 fw-700 paynow-btn" (click)="paynow()">PAY NOW</button>
+               </div>
+           </div>
+    </div>
+   
+</div>

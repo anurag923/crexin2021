@@ -1,0 +1,51 @@
+.app-store-icons{
+    width: 100px;
+    height: 100px;
+}
+.app-store-icons img{
+    width: 100%;
+    height: 100%;
+}
+.links{
+    width: 120px;
+}
+ul li{
+    display: flex;
+    align-items: center !important;
+}
+.submit{
+    background: #339999;
+    color: #081919;
+    font-weight: 700;
+    font-size: 17px;
+}
+input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #241a00 !important;
+    opacity: 0.9; /* Firefox */
+    font-size: 15px !important;
+    font-weight: 700;
+    font-style: italic !important;
+}
+.form-control{
+    background-color: #dca101 !important;
+    border: 1px solid #dca101 !important;
+    font-size: 15px !important;
+    font-weight: 700;
+    color: #241a00 !important;
+    opacity: 0.9;
+    height: 40px !important;
+    font-style: italic !important;
+}
+/* input{
+    border: 1px solid #dca101 !important;
+    font-size: 15px !important;
+    font-weight: 700;
+    color: #241a00 !important;
+    opacity: 1;
+} */
+@media(min-width:560px){
+    .quick-lines{
+        display: flex;
+        justify-content: center;
+    }
+}

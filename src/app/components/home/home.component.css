@@ -1,0 +1,12 @@
+.list-unstyled li a i:hover{
+    border-radius: 2px;
+    padding: 2px;
+    transform: scale(2);
+    color: #dca101 !important;
+}
+
+@media (max-width:768px) {
+    .home-text{
+        font-size: 30px !important;
+    }
+}
