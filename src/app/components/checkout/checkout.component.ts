@@ -447,7 +447,10 @@ export class CheckoutComponent implements OnInit {
           })
          }
          else if(sessionStorage.getItem('time')=='weekly'){
-          this.due_date = this.w_startdate+7
+          this.Date = new Date(this.w_startdate);
+          this.Date.setDate(this.Date.getDate()+7);
+          this.due_date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
+          // this.due_date = this.w_startdate+7
           console.log(this.due_date);
           console.log(this.no_weeks);
           console.log(this.w_endtime);

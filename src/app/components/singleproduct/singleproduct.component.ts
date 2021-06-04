@@ -51,6 +51,8 @@ export class SingleproductComponent implements OnInit {
   no_of_weeks:any;
   cat_name = sessionStorage.getItem('cat_name');
   bookings_notavailable = false;
+  show = false;
+  error:any;
   constructor(private datePipe: DatePipe,private fb:FormBuilder, private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) {
     sessionStorage.setItem('time','hourly');
    }
@@ -305,9 +307,16 @@ export class SingleproductComponent implements OnInit {
       this.router.navigate(['checkout']);
      },(error)=>{
        console.log(error);
-      this.toastr.error(this.message,error.error.message,{
-        positionClass: 'toast-top-center'
-      });
+       if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
+         this.error = error.error.message;
+         this.show = true;
+         setTimeout(() => {
+           this.show = false;
+         }, 5000);
+       }
+      // this.toastr.error(this.message,error.error.message,{
+      //   positionClass: 'toast-top-center'
+      // });
       this.router.navigate(['singleproduct']);
      });
     }
@@ -357,9 +366,16 @@ export class SingleproductComponent implements OnInit {
         this.router.navigate(['checkout']);
       },(error)=>{
         console.log(error);
-        this.toastr.error(this.message,error.error.message,{
-          positionClass: 'toast-top-center'
-        });
+        if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
+          this.error = error.error.message;
+          this.show = true;
+          setTimeout(() => {
+            this.show = false;
+          }, 5000);
+        }
+        // this.toastr.error(this.message,error.error.message,{
+        //   positionClass: 'toast-top-center'
+        // });
         this.router.navigate(['singleproduct']);
       })
     //   const headers= new HttpHeaders()
@@ -428,9 +444,16 @@ export class SingleproductComponent implements OnInit {
         this.router.navigate(['checkout']);
       },(error)=>{
         console.log(error);
-       this.toastr.error(this.message,error.error.message,{
-         positionClass: 'toast-top-center'
-       });
+        if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
+          this.error = error.error.message;
+          this.show = true;
+          setTimeout(() => {
+            this.show = false;
+          }, 5000);
+        }
+      //  this.toastr.error(this.message,error.error.message,{
+      //    positionClass: 'toast-top-center'
+      //  });
        this.router.navigate(['singleproduct']);
       })
     //   const headers= new HttpHeaders()
@@ -458,8 +481,17 @@ export class SingleproductComponent implements OnInit {
   }
   getcurrentdate() {
     this.Date = new Date();
-    this.latest_date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
-    this.book_date1 = this.latest_date;
+    var time = this.datePipe.transform(this.Date, 'HH:MM');
+    if(time<"18:00"){
+      this.Date.setDate(this.Date.getDate()+1);
+      this.latest_date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
+      this.book_date1 = this.latest_date;
+    }
+    else if(time>="18:00"){
+      this.Date.setDate(this.Date.getDate()+2);
+      this.latest_date = this.datePipe.transform(this.Date, 'yyyy-MM-dd');
+      this.book_date1 = this.latest_date;
+    }
   }
   search(search_categorie){
     const headers= new HttpHeaders()

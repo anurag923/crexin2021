@@ -64,6 +64,7 @@
                           <div class="col-md-12" *ngIf="bookings_notavailable">
                           <h1 class="text-danger fs-15 fw-700 mgb-10 text-center">In this time bookings not available</h1>
                           </div>
+                        <p *ngIf="show" class="text-danger font-weight-bold">{{error}}</p>
                          <div class="radio-buttons d-flex justify-content-between">
                           <div class="form-check">
                             <input class="form-check-input" value="hourly"  (click)="hourly_function()" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
@@ -113,9 +114,6 @@
                                <label for="" class="fs-15 fw-700 text-color">Start Time</label>
                                <select class="form-control p-0" aria-label="Default select example" formControlName="h_starttime" [ngClass]="{ 'is-invalid': submitted_hourly  && h.h_starttime.errors }">
                                 <option selected>Select time</option>
-                                <option value="1am - 2am">1am - 2am</option>
-                                <option value="2am - 3am">2am - 3am</option>
-                                <option value="3am - 4am">3am - 4am</option>
                                 <option value="4am - 5am">4am - 5am</option>
                                 <option value="5am - 6am">5am - 6am</option>
                                 <option value="6am - 7am">6am - 7am</option>
@@ -134,7 +132,6 @@
                                 <option value="8PM - 9PM">8pm - 9pm</option>
                                 <option value="9PM - 10PM">9pm - 10pm</option>
                                 <option value="10pm - 11pm">10pm - 11pm</option>
-                                <option value="11pm - 12pm">11pm - 12pm</option>
                                </select>
                                <!-- <input type="time" class="form-control" placeholder="7AM to 6PM" formControlName="h_starttime" [ngClass]="{ 'is-invalid': submitted_hourly  && h.h_starttime.errors }"> -->
                                <div *ngIf="submitted_hourly  && h.h_starttime.errors" class="invalid-feedback">
@@ -186,10 +183,7 @@
                                <ngx-material-timepicker #picker></ngx-material-timepicker> -->
                                <select class="form-control p-0" aria-label="Default select example" class="form-control" placeholder="7AM to 6PM" formControlName="d_starttime" (change)="endtime(starttime.value)" [ngClass]="{ 'is-invalid': submitted_daily && d.d_starttime.errors }" #starttime>
                                 <option selected>Select time</option>
-                                <option value="1am - 2am">1am - 2am</option>
-                                <option value="2am - 3am">2am - 3am</option>
-                                <option value="3am - 4am">3am - 4am</option>
-                                <option value="4am - 5am">4am - 5am</option>
+                                                                <option value="4am - 5am">4am - 5am</option>
                                 <option value="5am - 6am">5am - 6am</option>
                                 <option value="6am - 7am">6am - 7am</option>
                                 <option value="7am - 8am">7am - 8am</option>
@@ -207,7 +201,6 @@
                                 <option value="8PM - 9PM">8pm - 9pm</option>
                                 <option value="9PM - 10PM">9pm - 10pm</option>
                                 <option value="10pm - 11pm">10pm - 11pm</option>
-                                <option value="11pm - 12pm">11pm - 12pm</option>
                                </select>
                                <!-- <input type="time" class="form-control" placeholder="7AM to 6PM" formControlName="d_starttime" (change)="endtime(starttime.value)" [ngClass]="{ 'is-invalid': submitted_daily && d.d_starttime.errors }" #starttime> -->
                                <div *ngIf="submitted_daily && d.d_starttime.errors" class="invalid-feedback" >
@@ -270,9 +263,7 @@
                                <label for="" class="fs-15 fw-700 text-color">Start Time</label>
                                <select class="form-control p-0" aria-label="Default select example" class="form-control" placeholder="7AM to 6PM" formControlName="w_starttime" [ngClass]="{ 'is-invalid': submitted_weekly  && w.w_starttime.errors }" (change)="w_end_time(starttime.value)" #starttime>
                                 <option selected>Select time</option>
-                                <option value="1am - 2am">1am - 2am</option>
-                                <option value="2am - 3am">2am - 3am</option>
-                                <option value="3am - 4am">3am - 4am</option>
+                                
                                 <option value="4am - 5am">4am - 5am</option>
                                 <option value="5am - 6am">5am - 6am</option>
                                 <option value="6am - 7am">6am - 7am</option>
@@ -291,7 +282,7 @@
                                 <option value="8PM - 9PM">8pm - 9pm</option>
                                 <option value="9PM - 10PM">9pm - 10pm</option>
                                 <option value="10pm - 11pm">10pm - 11pm</option>
-                                <option value="11pm - 12pm">11pm - 12pm</option>
+                                
                                </select>
                                <!-- <input type="time" class="form-control" placeholder="7AM to 6PM" formControlName="w_starttime" [ngClass]="{ 'is-invalid': submitted_weekly  && w.w_starttime.errors }" (change)="w_end_time(starttime.value)" #starttime> -->
                                <div *ngIf="submitted_weekly  && w.w_starttime.errors" class="invalid-feedback">
