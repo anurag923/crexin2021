@@ -299,17 +299,15 @@ export class SingleproductComponent implements OnInit {
       // this.crexinservice.rent(data).subscribe((res)=>{
         console.log(res.response);
         sessionStorage.setItem('booking_id',res.response.id);
+        console.log(res.response.subcategory.hourly_rate);
+        sessionStorage.setItem('hourly_rate',res.response.subcategory.hourly_rate);
       //  sessionStorage.setItem('grandtotal', this.order.grandtotal);
       //  sessionStorage.setItem('gst', this.order.gst);
       //  sessionStorage.setItem('subtotal', this.order.subtotal);
       //  this.toastr.success(this.message,res.message,{
       //   positionClass:'toast-top-center'
       // });
-      //this.router.navigate(['checkout']);
-      this.router.navigate(['checkout'])
-      .then(() => {
-        window.location.reload();
-      });
+      this.router.navigate(['checkout']);
      },(error)=>{
        console.log(error);
        if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
@@ -357,22 +355,20 @@ export class SingleproductComponent implements OnInit {
       sessionStorage.setItem('d_endtime',this.end_time);
       sessionStorage.setItem('d_enddate',this.end_date);
       console.log(data);
-      this.crexinservice.rent(data).subscribe((res)=>{
-        // const headers= new HttpHeaders()
-        // .set('content-type', 'application/json')
-        // .set('Access-Control-Allow-Origin', '*')
-        // .set('Authorization',`Bearer ${this.auth_token}`);
-        // this.http.post<any>('https://www.superuser.crexin.com/api/user/rent',data,{'headers':headers}).subscribe((res)=>{
+      // this.crexinservice.rent(data).subscribe((res)=>{
+        const headers= new HttpHeaders()
+        .set('content-type', 'application/json')
+        .set('Access-Control-Allow-Origin', '*')
+        .set('Authorization',`Bearer ${this.auth_token}`);
+        this.http.post<any>('https://www.superuser.crexin.com/api/user/rent',data,{'headers':headers}).subscribe((res)=>{
         console.log(res);
         sessionStorage.setItem('booking_id',res.response.id);
+        sessionStorage.setItem('daily_rate',res.response.subcategory.daily_rate);
         // this.toastr.success(this.message,res.message,{
         //   positionClass:'toast-top-center'
         // });
         //this.router.navigate(['checkout']);
-        this.router.navigate(['checkout'])
-      .then(() => {
-        window.location.reload();
-      });
+        this.router.navigate(['checkout']);
       },(error)=>{
         console.log(error);
         if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
@@ -439,22 +435,20 @@ export class SingleproductComponent implements OnInit {
       sessionStorage.setItem('w_endtime',this.wend_time);
       sessionStorage.setItem('w_enddate',this.wend_date);
       console.log(data);
-      this.crexinservice.rent(data).subscribe((res)=>{
-        // const headers= new HttpHeaders()
-        // .set('content-type', 'application/json')
-        // .set('Access-Control-Allow-Origin', '*')
-        // .set('Authorization',`Bearer ${this.auth_token}`);
-        // this.http.post<any>('https://www.superuser.crexin.com/api/user/rent',data,{'headers':headers}).subscribe((res)=>{
+      //this.crexinservice.rent(data).subscribe((res)=>{
+        const headers= new HttpHeaders()
+        .set('content-type', 'application/json')
+        .set('Access-Control-Allow-Origin', '*')
+        .set('Authorization',`Bearer ${this.auth_token}`);
+        this.http.post<any>('https://www.superuser.crexin.com/api/user/rent',data,{'headers':headers}).subscribe((res)=>{
         console.log(res);
         sessionStorage.setItem('booking_id',res.response.id);
+        sessionStorage.setItem('weekly_rate',res.response.subcategory.weekly_rate);
         // this.toastr.success(this.message,res.message,{
         //   positionClass:'toast-top-center'
         // });
         //this.router.navigate(['checkout']);
-        this.router.navigate(['checkout'])
-      .then(() => {
-        window.location.reload();
-      });
+        this.router.navigate(['checkout']);
       },(error)=>{
         console.log(error);
         if(error.error.message=='Bookings are allowed between 6AM to 9PM'){

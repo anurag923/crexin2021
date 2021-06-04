@@ -77,8 +77,11 @@ export class CheckoutComponent implements OnInit {
   book_date1: string;
   w_s_date: any;
   s_date: any;
+  h_rate = sessionStorage.getItem('hourly_rate');
   hourly_rate: any;
+  d_rate = sessionStorage.getItem('daily_rate');
   daily_rate: any;
+  w_rate = sessionStorage.getItem('weekly_rate');
   weekly_rate: any;
   h_sub_total: any;
   d_sub_total: any;
@@ -168,7 +171,9 @@ export class CheckoutComponent implements OnInit {
       this.checked_weekly = false;
       this.hourly = true;
       this.h_no_hours = +this.no_hours
-      this.hourly_rate = sessionStorage.getItem('hourly_rate');
+      this.hourly_rate = +this.h_rate
+      console.log(this.h_no_hours);
+      console.log(this.hourly_rate);
       this.h_sub_total = this.h_no_hours*this.hourly_rate
       console.log(this.h_sub_total)
       this.h_grandtotal = this.h_sub_total+0
@@ -181,7 +186,7 @@ export class CheckoutComponent implements OnInit {
       this.checked_daily = true;
       this.checked_weekly = false;
       this.daily = true;
-      this.daily_rate = sessionStorage.getItem('daily_rate')
+      this.daily_rate = +this.d_rate
       this.d_no_days = +this.no_days
       this.d_total_days_amount = this.d_no_days*this.daily_rate
       console.log(this.d_total_days_amount);
@@ -194,7 +199,7 @@ export class CheckoutComponent implements OnInit {
       this.checked_daily = false;
       this.checked_weekly = true;
       this.weekly = true;
-      this.weekly_rate = sessionStorage.getItem('weekly_rate')
+      this.weekly_rate = +this.w_rate
       this.w_no_weeks = +this.no_weeks
       this.w_total_weeks_amount = this.w_no_weeks*this.weekly_rate
       console.log(this.w_total_weeks_amount);
