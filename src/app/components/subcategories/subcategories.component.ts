@@ -27,6 +27,7 @@ export class SubcategoriesComponent implements OnInit {
   constructor(private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) { }
 
   ngOnInit(): void {
+    this.subcategories(sessionStorage.getItem('cat_id'),sessionStorage.getItem('cat_name'));
     this.crexinservice.getallcategories().subscribe((res)=>{
       console.log(res.categories);
       this.allcategories = res.categories
@@ -56,7 +57,7 @@ export class SubcategoriesComponent implements OnInit {
    })
 
   }
-  subcategories(event,cat_id:any,categorie){
+  subcategories(cat_id:any,categorie){
     // console.log(name);
     // sessionStorage.setItem('cat_name', name);
     this.selectedItem = categorie; 

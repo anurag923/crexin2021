@@ -46,7 +46,7 @@
                <div class="col-md-2">
                 <ul class="categories">
                     <li class="fs-15 pdl-10" (click)="categories()">All Categories</li>
-                    <li class="fs-15 pdl-10" [ngClass]="{'active': selectedItem == categorie}" (click)="subcategories($event,categorie.id,categorie)" *ngFor="let categorie of allcategories;let id = index">
+                    <li class="fs-15 pdl-10" [ngClass]="{'active': selectedItem == categorie}" (click)="subcategories(categorie.id,categorie)" *ngFor="let categorie of allcategories;let id = index">
                         <a>{{categorie.c_name}}</a>
                     </li>
                </ul>

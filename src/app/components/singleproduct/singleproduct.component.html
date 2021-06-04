@@ -157,14 +157,11 @@
                              <div class="form-group col-md-4">
                                <label for="" class="fs-15 fw-700 text-color">No of Days</label>
                                <select name="" id="" class="form-control" (click)="d_days()" formControlName="no_days" [ngClass]="{ 'is-invalid': submitted_daily && d.no_days.errors }">
+                                  <option value="1">1Day</option>
+                                  <option value="2">2Days</option>
                                   <option value="3">3Days</option>
                                   <option value="4">4Days</option>
                                   <option value="5">5Days</option>
-                                  <option value="6">6Days</option>
-                                  <option value="7">7Days</option>
-                                  <option value="8">8Days</option>
-                                  <option value="9">9Days</option>
-                                  <option value="10">10Days</option>
                                </select>
                                <div *ngIf="submitted_daily && d.no_days.errors" class="invalid-feedback">
                                 <div *ngIf="d.no_days.errors.required" class="fs-15 fw-700">No of Days is required</div>
@@ -237,7 +234,7 @@
                              <div class="form-group col-md-4">
                                <label for="" class="fs-15 fw-700 text-color">No of Weeks</label>
                                <select name="" id="" (click)="w_days()" class="form-control" [(ngModel)]="no_of_weeks" formControlName="no_weeks" [ngClass]="{ 'is-invalid': submitted_weekly && w.no_weeks.errors }">
-                                  <option value="1">1Weeks</option>
+                                  <option value="1">1Week</option>
                                   <option value="2">2Weeks</option>
                                   <option value="3">3Weeks</option>
                                   <option value="4">4Weeks</option>
@@ -247,6 +244,8 @@
                                   <option value="8">8Weeks</option>
                                   <option value="9">9Weeks</option>
                                   <option value="10">10Weeks</option>
+                                  <option value="11">11Weeks</option>
+                                  <option value="12">12Weeks</option>
                                </select>
                               <div *ngIf="submitted_weekly  && w.no_weeks.errors" class="invalid-feedback">
                                 <div *ngIf="w.no_weeks.errors.required" class="fs-15 fw-700">No of Weeks is required</div>

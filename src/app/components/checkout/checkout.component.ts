@@ -349,7 +349,10 @@ export class CheckoutComponent implements OnInit {
     }
     paynow(){
       this.submitted = true;
-      if(this.Site_Details.invalid && this.Billing_Information.invalid){
+      if(this.Site_Details.invalid){
+        return false;
+      }
+      else if(this.Billing_Information.invalid){
         return false;
       }
         else if(sessionStorage.getItem('auth_token') === null){

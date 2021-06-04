@@ -13,11 +13,11 @@ export class CrexinInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    request = request.clone({
-      setHeaders: {
-        'Authorization': `Bearer ${auth_token}`,
-      }
-    });
+    // request = request.clone({
+    //   setHeaders: {
+    //     'Authorization': `Bearer ${auth_token}`,
+    //   }
+    // });
     return next.handle(request);
   }
 }

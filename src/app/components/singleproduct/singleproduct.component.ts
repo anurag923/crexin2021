@@ -289,11 +289,12 @@ export class SingleproductComponent implements OnInit {
       sessionStorage.setItem('h_startdate',this.Hourly.get('h_startdate').value);
       sessionStorage.setItem('h_starttime',this.Hourly.get('h_starttime').value);
       console.log(data);
+      console.log(this.auth_token);
       const headers= new HttpHeaders()
       .set('content-type', 'application/json')
       .set('Access-Control-Allow-Origin', '*')
       .set('Authorization',`Bearer ${this.auth_token}`);
-      this.http.post<any>('https://www.superuser.crexin.com/api/user/rent',data,{'headers':headers}).subscribe((res)=>{
+      this.http.post<any>('https://superuser.crexin.com/api/user/rent',data,{'headers':headers}).subscribe((res)=>{
       //  console.log(res);
       // this.crexinservice.rent(data).subscribe((res)=>{
         console.log(res.response);
@@ -304,7 +305,11 @@ export class SingleproductComponent implements OnInit {
       //  this.toastr.success(this.message,res.message,{
       //   positionClass:'toast-top-center'
       // });
-      this.router.navigate(['checkout']);
+      //this.router.navigate(['checkout']);
+      this.router.navigate(['checkout'])
+      .then(() => {
+        window.location.reload();
+      });
      },(error)=>{
        console.log(error);
        if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
@@ -363,7 +368,11 @@ export class SingleproductComponent implements OnInit {
         // this.toastr.success(this.message,res.message,{
         //   positionClass:'toast-top-center'
         // });
-        this.router.navigate(['checkout']);
+        //this.router.navigate(['checkout']);
+        this.router.navigate(['checkout'])
+      .then(() => {
+        window.location.reload();
+      });
       },(error)=>{
         console.log(error);
         if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
@@ -441,7 +450,11 @@ export class SingleproductComponent implements OnInit {
         // this.toastr.success(this.message,res.message,{
         //   positionClass:'toast-top-center'
         // });
-        this.router.navigate(['checkout']);
+        //this.router.navigate(['checkout']);
+        this.router.navigate(['checkout'])
+      .then(() => {
+        window.location.reload();
+      });
       },(error)=>{
         console.log(error);
         if(error.error.message=='Bookings are allowed between 6AM to 9PM'){
