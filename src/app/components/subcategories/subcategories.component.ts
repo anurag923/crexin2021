@@ -67,10 +67,11 @@ export class SubcategoriesComponent implements OnInit {
   get cat_name(){
     return sessionStorage.getItem('cat_name')
   }
-  subcategories(index:number,cat_id:any,categorie){
+  subcategories(index:number,cat_id:any,name){
     this.selectedIndex = index;
-    this.selectedItem = categorie.c_name;
+    this.selectedItem = name;
     sessionStorage.setItem('cat_id',cat_id);
+    sessionStorage.setItem('cat_name',name);
     this.cat_id = cat_id;
     const headers= new HttpHeaders()
     .set('content-type', 'application/json')

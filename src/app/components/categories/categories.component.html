@@ -61,7 +61,7 @@
                <div class="col-md-10">
                 <div class="grid">
                     <div class="row mgl-0 mgr-0" *ngIf="categories">
-                        <div class="col-md-4 my-3" (click)="subcategories(categorie_image.id,categorie_image.c_name,categorie)" *ngFor="let categorie_image of allcategories">
+                        <div class="col-md-4 my-3" (click)="subcategories(i,categorie_image.id,categorie_image.c_name)" *ngFor="let categorie_image of allcategories;let i = index">
                              <div class="text-center crexin-product-images">
                                  <img src="{{categorie_image.c_image}}" alt="" class="img-fluid" alt="Responsive image">
                                  <h1 class="crexin-text mgb-0 mgt-10 fs-16 fw-700 text-center">{{categorie_image.c_name}}</h1>
@@ -69,7 +69,7 @@
                         </div>
                      </div>
                      <div class="row mgl-0 mgr-0" *ngIf="globalsearch">
-                        <div class="col-md-4 my-3" (click)="subcategories(categorie_image.id,categorie_image.c_name)" *ngFor="let categorie_image of searchcategories">
+                        <div class="col-md-4 my-3" (click)="subcategories(i,categorie_image.id,categorie_image.c_name)" *ngFor="let categorie_image of searchcategories;let i = index">
                              <div class="text-center crexin-product-images">
                                  <img src="{{categorie_image.c_image}}" alt="" class="img-fluid" alt="Responsive image" (click)="subcategories(categorie.id)">
                                  <h1 class="crexin-text mgb-0 mgt-10 fs-16 fw-700 text-center">{{categorie_image.c_name}}</h1>

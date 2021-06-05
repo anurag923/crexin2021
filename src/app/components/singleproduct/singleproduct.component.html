@@ -57,13 +57,13 @@
                           <img src="{{singleproduct.sc_image}}" class="img-fluid" alt="Responsive image">
                         </div>
                         <div class="mt-3">
-                          <p class="fs-15 fw-600 mgb-0 text-color lh-22">{{singleproduct.description}}</p>
+                          <p class="fs-15 fw-600 mgb-0 text-color lh-22">{{singleproduct.sc_description}}</p>
                         </div>
                       </div>
                       <div class="col-md-8 my-2">
-                          <div class="col-md-12" *ngIf="bookings_notavailable">
+                          <!-- <div class="col-md-12" *ngIf="bookings_notavailable">
                           <h1 class="text-danger fs-15 fw-700 mgb-10 text-center">In this time bookings not available</h1>
-                          </div>
+                          </div> -->
                         <p *ngIf="show" class="text-danger font-weight-bold">{{error}}</p>
                          <div class="radio-buttons d-flex justify-content-between">
                           <div class="form-check">

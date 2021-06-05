@@ -114,11 +114,12 @@ export class CategoriesComponent implements OnInit {
   subcategories(index:number,id:any,name:any){
     this.selectedIndex = index;
     console.log(name);
-    sessionStorage.setItem('cat_id', id);
-    sessionStorage.setItem('cat_name', name);
+    sessionStorage.setItem('cat_id',id);
+    sessionStorage.setItem('cat_name',name);
     sessionStorage.setItem('index',index.toString());
     this.c_active = false;
     this.c_unactive = true;
     this.route.navigate(['/subcategories']);
   }
+
 }

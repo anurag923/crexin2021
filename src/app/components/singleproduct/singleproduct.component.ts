@@ -92,18 +92,19 @@ export class SingleproductComponent implements OnInit {
     .set('Authorization',`Bearer ${this.auth_token}`);
     this.http.get<any>('https://superuser.crexin.com/api/subcategory/'+sessionStorage.getItem('sub_id'),{'headers':headers}).pipe(shareReplay(1)).subscribe((res)=>{
      console.log(res);
+    this.singleproduct = res.response;
     //  sessionStorage.setItem('eqid',res.equipments[0].id);
     //  sessionStorage.setItem('hourly_rate',res.equipments[0].hourly_rate)
     //  console.log(sessionStorage.getItem('hourly_rate'));
-     if(res.response.length === 0 || res.response.length === null){
-      this.toastr.error(this.message,"No equipments available at this moment",{
-        positionClass: 'toast-top-center'
-      });
-     }
-    else{
-      this.singleproduct = res.response;
+    //  if(res.response.length === 0 || res.response.length === null){
+    //   this.toastr.error(this.message,"No equipments available at this moment",{
+    //     positionClass: 'toast-top-center'
+    //   });
+    //  }
+    // else{
+    //   this.singleproduct = res.response;
       // this.loading = false;
-    }
+    // }
      this.loading = false;
    },(error)=>{
      console.log(error);
@@ -217,17 +218,18 @@ export class SingleproductComponent implements OnInit {
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')
     .set('Authorization',`Bearer ${this.auth_token}`);
-    this.http.get<any>('https://www.superuser.crexin.com/api/subcategories/'+this.cat_id,{'headers':headers}).pipe(shareReplay(1)).subscribe((res)=>{
-     console.log(res.subcategories);
-     if(res.subcategories.length === 0 || res.subcategories.length === null){
-      this.toastr.error(this.message,"No equipments available at this moment",{
-        positionClass: 'toast-top-center'
-      });
-     }
-    else{
-      this.products = res.subcategories
+    this.http.get<any>('https://www.superuser.crexin.com/api/subcategory/'+sessionStorage.getItem('sub_id'),{'headers':headers}).pipe(shareReplay(1)).subscribe((res)=>{
+    console.log(res);
+    this.singleproduct = res.response;
+    //  if(res.subcategories.length === 0 || res.subcategories.length === null){
+    //   this.toastr.error(this.message,"No equipments available at this moment",{
+    //     positionClass: 'toast-top-center'
+    //   });
+    //  }
+    // else{
+      // this.products = res.subcategories
       // this.loading = false;
-    }
+    // }
      this.loading = false;
    },(error)=>{
      console.log(error);
@@ -235,7 +237,7 @@ export class SingleproductComponent implements OnInit {
       positionClass: 'toast-top-center'
     });
    });
-   this.single_product = false;
+   //this.single_product = false;
    this.categorie_products = true;
   }
   singlesucategorie(id:any){
