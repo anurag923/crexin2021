@@ -275,6 +275,7 @@ export class SingleproductComponent implements OnInit {
       return false;
     }
     else if(sessionStorage.getItem('auth_token') === null){
+      sessionStorage.setItem('route',this.route.url);
       this.toastr.error(this.message,'Please login to proceed',{
         positionClass:'toast-top-center'
       });
@@ -331,6 +332,7 @@ export class SingleproductComponent implements OnInit {
   }
   Dailyoption(id:any){
     sessionStorage.setItem('sub_id',id);
+    
     this.submitted_daily = true;
     if(this.Daily.invalid){
       console.log(this.Daily.get('d_endtime').value);
@@ -338,6 +340,7 @@ export class SingleproductComponent implements OnInit {
       return false;
     }
     else if(sessionStorage.getItem('auth_token') === null){
+      sessionStorage.setItem('route',this.route.url);
       this.toastr.error(this.message,'Please login to proceed',{
         positionClass:'toast-top-center'
       });
@@ -418,6 +421,7 @@ export class SingleproductComponent implements OnInit {
       return false;
     }
     else if(sessionStorage.getItem('auth_token') === null){
+      sessionStorage.setItem('route',this.route.url);
       this.toastr.error(this.message,'Please login to proceed',{
         positionClass:'toast-top-center'
       });

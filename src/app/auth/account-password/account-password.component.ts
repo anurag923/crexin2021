@@ -39,10 +39,19 @@ export class AccountPasswordComponent implements OnInit {
         console.log(res);
         sessionStorage.setItem('auth_token',res.token);
         sessionStorage.setItem('isloggedin', 'true');
+        sessionStorage.setItem('name',res.fullname)
+        sessionStorage.setItem('email',res.email)
+        sessionStorage.setItem('phone',res.phone)
+
         this.toastr.success(this.message,res.message,{
           positionClass:'toast-top-center'
         });
-        this.router.navigate(['/']);
+        if(sessionStorage.getItem('route')=='/singleproduct'){
+          this.router.navigate(['/singleproduct']);
+        }
+        else{
+          this.router.navigate(['/']);
+        }
       },(err)=>{
         console.log(err);
         this.incorrect_credentials = err.error.message

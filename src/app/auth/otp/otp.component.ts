@@ -108,7 +108,12 @@ otpsuccess(){
       //   sessionStorage.setItem('email',res.user.email)
       //   sessionStorage.setItem('phone',res.user.phone)
       // })
-      this.router.navigate(['/']);
+      if(sessionStorage.getItem('route')=='/singleproduct'){
+        this.router.navigate(['/singleproduct']);
+      }
+      else{
+        this.router.navigate(['/']);
+      }
       // window.location.reload(); 
     },(error)=>{
       console.log(error);
