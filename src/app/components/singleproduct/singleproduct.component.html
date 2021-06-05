@@ -180,7 +180,7 @@
                                <ngx-material-timepicker #picker></ngx-material-timepicker> -->
                                <select class="form-control p-0" aria-label="Default select example" class="form-control" placeholder="7AM to 6PM" formControlName="d_starttime" (change)="endtime(starttime.value)" [ngClass]="{ 'is-invalid': submitted_daily && d.d_starttime.errors }" #starttime>
                                 <option selected>Select time</option>
-                                                                <option value="4am - 5am">4am - 5am</option>
+                                <option value="4am - 5am">4am - 5am</option>
                                 <option value="5am - 6am">5am - 6am</option>
                                 <option value="6am - 7am">6am - 7am</option>
                                 <option value="7am - 8am">7am - 8am</option>

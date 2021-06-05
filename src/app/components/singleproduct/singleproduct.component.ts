@@ -61,7 +61,7 @@ export class SingleproductComponent implements OnInit {
 
   ngOnInit(): void {
     this.index = +sessionStorage.getItem('index'); 
-    this.categoriedetails(this.index,sessionStorage.getItem('cat_id'),sessionStorage.getItem('cat_name'));
+    //this.categoriedetails(this.index,sessionStorage.getItem('cat_id'),sessionStorage.getItem('cat_name'));
     sessionStorage.setItem('time','hourly');
     this.Hourly = this.fb.group({
       no_hours : ['', Validators.required],
@@ -213,23 +213,26 @@ export class SingleproductComponent implements OnInit {
     this.selectedIndex = index;
     this.selectedItem = categorie.c_name;
     sessionStorage.setItem('cat_id',cat_id);
+    sessionStorage.setItem('index',index.toString());
+    sessionStorage.setItem('cat_name',categorie.c_name);
     this.cat_id = cat_id;
     const headers= new HttpHeaders()
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')
     .set('Authorization',`Bearer ${this.auth_token}`);
-    this.http.get<any>('https://www.superuser.crexin.com/api/subcategory/'+sessionStorage.getItem('sub_id'),{'headers':headers}).pipe(shareReplay(1)).subscribe((res)=>{
+    this.http.get<any>('https://www.superuser.crexin.com/api/subcategories/'+this.cat_id,{'headers':headers}).pipe(shareReplay(1)).subscribe((res)=>{
     console.log(res);
-    this.singleproduct = res.response;
-    //  if(res.subcategories.length === 0 || res.subcategories.length === null){
-    //   this.toastr.error(this.message,"No equipments available at this moment",{
-    //     positionClass: 'toast-top-center'
-    //   });
-    //  }
-    // else{
-      // this.products = res.subcategories
-      // this.loading = false;
-    // }
+    //this.route.navigate(['/subcategories']);
+    // this.singleproduct = res.response;
+     if(res.subcategories.length === 0 || res.subcategories.length === null){
+      this.toastr.error(this.message,"No equipments available at this moment",{
+        positionClass: 'toast-top-center'
+      });
+     }
+    else{
+      this.products = res.subcategories
+      this.loading = false;
+    }
      this.loading = false;
    },(error)=>{
      console.log(error);
@@ -237,7 +240,7 @@ export class SingleproductComponent implements OnInit {
       positionClass: 'toast-top-center'
     });
    });
-   //this.single_product = false;
+   this.single_product = false;
    this.categorie_products = true;
   }
   singlesucategorie(id:any){
