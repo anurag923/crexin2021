@@ -11,6 +11,7 @@ import { CrexinService } from 'src/app/services/crexin.service';
   styleUrls: ['./subcategories.component.css']
 })
 export class SubcategoriesComponent implements OnInit {
+  selectedIndex: number = null;
   auth_token = sessionStorage.getItem('auth_token');
   singleproducts: any;
   message: string;
@@ -24,10 +25,13 @@ export class SubcategoriesComponent implements OnInit {
   d = true;
   p = false;
   // cat_name = sessionStorage.getItem('cat_name');
+  index:number;
   active = false;
   constructor(private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) { }
 
   ngOnInit(): void {
+    this.index = +sessionStorage.getItem('index'); 
+    this.subcategories(this.index,sessionStorage.getItem('cat_id'),sessionStorage.getItem('cat_name'));
     this.crexinservice.getallcategories().subscribe((res)=>{
       console.log(res.categories);
       this.allcategories = res.categories
@@ -63,11 +67,9 @@ export class SubcategoriesComponent implements OnInit {
   get cat_name(){
     return sessionStorage.getItem('cat_name')
   }
-  subcategories(event,cat_id:any,name:any,categorie){
-    // console.log(name);
-    sessionStorage.setItem('cat_name', name);
+  subcategories(index:number,cat_id:any,categorie){
+    this.selectedIndex = index;
     this.selectedItem = categorie.c_name;
-    //this.active = true; 
     sessionStorage.setItem('cat_id',cat_id);
     this.cat_id = cat_id;
     const headers= new HttpHeaders()

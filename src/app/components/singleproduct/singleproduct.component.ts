@@ -13,6 +13,7 @@ import { DatePipe } from '@angular/common';
   providers: [DatePipe]
 })
 export class SingleproductComponent implements OnInit {
+  selectedIndex: number = null;
   hourly = true;
   daily = false;
   weekly = false;
@@ -53,11 +54,14 @@ export class SingleproductComponent implements OnInit {
   bookings_notavailable = false;
   show = false;
   error:any;
+  index:number;
   constructor(private datePipe: DatePipe,private fb:FormBuilder, private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) {
     sessionStorage.setItem('time','hourly');
    }
 
   ngOnInit(): void {
+    this.index = +sessionStorage.getItem('index'); 
+    this.categoriedetails(this.index,sessionStorage.getItem('cat_id'),sessionStorage.getItem('cat_name'));
     sessionStorage.setItem('time','hourly');
     this.Hourly = this.fb.group({
       no_hours : ['', Validators.required],
@@ -204,9 +208,10 @@ export class SingleproductComponent implements OnInit {
     this.Daily_button = false;
     this.Weekly_button = true;
   }
-  categoriedetails(event,cat_id:any,categorie,name:any){
-    sessionStorage.setItem('cat_name', name);
-    this.selectedItem = categorie;
+  categoriedetails(index:number,cat_id:any,categorie){
+    this.selectedIndex = index;
+    this.selectedItem = categorie.c_name;
+    sessionStorage.setItem('cat_id',cat_id);
     this.cat_id = cat_id;
     const headers= new HttpHeaders()
     .set('content-type', 'application/json')

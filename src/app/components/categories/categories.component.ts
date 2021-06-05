@@ -12,6 +12,7 @@ import { CrexinService } from 'src/app/services/crexin.service';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
+  selectedIndex: number = null;
   c_unactive = false;
   c_active = true;
   cat_id: any;
@@ -110,11 +111,14 @@ export class CategoriesComponent implements OnInit {
       // this.products = res.products;
     })
   }
-  subcategories(id:any,name:any,categorie){
-    this.selectedItem = name;
+  subcategories(index:number,id:any,name:any){
+    this.selectedIndex = index;
     console.log(name);
     sessionStorage.setItem('cat_id', id);
     sessionStorage.setItem('cat_name', name);
+    sessionStorage.setItem('index',index.toString());
+    this.c_active = false;
+    this.c_unactive = true;
     this.route.navigate(['/subcategories']);
   }
 }

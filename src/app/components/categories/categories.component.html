@@ -50,11 +50,10 @@
                 <ul class="categories">
                     <li class="fs-15 pdl-10 fw-700 crexin-text" *ngIf="c_active">All Categories</li>
                     <li class="fs-15 pdl-10" *ngIf="c_unactive">All Categories</li>
-                    <li class="fs-15 pdl-10" [ngClass]="{'active':selectedItem==categorie.c_name}" (click)="subcategories(categorie.id,categorie.c_name,categorie)" *ngFor="let categorie of allcategories">
+                    <li class="fs-15 pdl-10" [class.active]="selectedIndex === i" (click)="subcategories(i,categorie.id,categorie.c_name)" *ngFor="let categorie of allcategories;let i = index">
                        <a>{{categorie.c_name}}</a>
                     </li>
-                    <!-- <app-sidebar></app-sidebar> -->
-                    <li class="fs-15 pdl-10" (click)="subcategories(categorie.id,categorie.c_name)" *ngFor="let categorie of searchcategories">
+                    <li class="fs-15 pdl-10" [class.active]="selectedIndex === i" (click)="subcategories(i,categorie.id,categorie.c_name)" *ngFor="let categorie of searchcategories;let i = index">
                         <a>{{categorie.c_name}}</a>
                     </li>
                 </ul>
