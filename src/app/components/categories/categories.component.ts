@@ -41,10 +41,13 @@ export class CategoriesComponent implements OnInit {
     .set('Authorization',`Bearer ${this.auth_token}`);
     this.http.get<any>('https://superuser.crexin.com/api/searchcategories?category='+sessionStorage.getItem('search_categorie'),{'headers':headers}).pipe(shareReplay(1)).subscribe((res)=>{
       console.log(res.categories);
+      sessionStorage.setItem('global_search', 'false');
       if(res.categories.length === 0){
          this.toastr.error(this.message,'No data found',{
         positionClass: 'toast-top-center'
        });
+       sessionStorage.setItem('global_search', 'false');
+       this.loading = false;
       }
      else{
       this.searchcategories = res.categories;
