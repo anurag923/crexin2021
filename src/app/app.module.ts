@@ -19,6 +19,7 @@ import { TermsandconditionsComponent } from './components/termsandconditions/ter
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from "ngx-spinner";
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
 // import { MDBBootstrapModule } from 'angular-bootstrap-md';
 @NgModule({
   declarations: [

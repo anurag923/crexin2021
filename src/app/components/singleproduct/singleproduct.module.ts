@@ -5,6 +5,7 @@ import { SingleproductRoutingModule } from './singleproduct-routing.module';
 import { SingleproductComponent } from './singleproduct.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { SharedModule } from '../../shared/shared/shared.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
     SingleproductRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule,
+    SharedModule
   ]
 })
 export class SingleproductModule { }

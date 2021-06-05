@@ -6,6 +6,7 @@ import { CategoriesComponent } from './categories.component';
 import { CategorieslistComponent } from './categorieslist/categorieslist.component';
 import { CsidenavComponent } from './csidenav/csidenav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared/shared.module';
 
 @NgModule({
   declarations: [CategoriesComponent, CategorieslistComponent, CsidenavComponent],
@@ -13,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     CategoriesRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [CategoriesComponent],
   schemas: [
