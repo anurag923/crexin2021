@@ -1,4 +1,3 @@
-<app-sidebar></app-sidebar>
 <div class="container-fluid p-0">
     <div class="bg-pic">
         <div class="col-md-12 text-center text-position-center">
@@ -51,9 +50,10 @@
                 <ul class="categories">
                     <li class="fs-15 pdl-10 fw-700 crexin-text" *ngIf="c_active">All Categories</li>
                     <li class="fs-15 pdl-10" *ngIf="c_unactive">All Categories</li>
-                    <li class="fs-15 pdl-10" (click)="subcategories(categorie.id,categorie.c_name)" *ngFor="let categorie of allcategories">
+                    <li class="fs-15 pdl-10" [ngClass]="{'active':selectedItem==categorie.c_name}" (click)="subcategories(categorie.id,categorie.c_name,categorie)" *ngFor="let categorie of allcategories">
                        <a>{{categorie.c_name}}</a>
                     </li>
+                    <!-- <app-sidebar></app-sidebar> -->
                     <li class="fs-15 pdl-10" (click)="subcategories(categorie.id,categorie.c_name)" *ngFor="let categorie of searchcategories">
                         <a>{{categorie.c_name}}</a>
                     </li>
@@ -61,15 +61,15 @@
                </div>
                <div class="col-md-10">
                 <div class="grid">
-                    <div class="row mgl-0 mgr-0">
-                        <div class="col-md-4 my-3" (click)="subcategories(categorie_image.id,categorie_image.c_name)" *ngFor="let categorie_image of allcategories">
+                    <div class="row mgl-0 mgr-0" *ngIf="categories">
+                        <div class="col-md-4 my-3" (click)="subcategories(categorie_image.id,categorie_image.c_name,categorie)" *ngFor="let categorie_image of allcategories">
                              <div class="text-center crexin-product-images">
-                                 <img src="{{categorie_image.c_image}}" alt="" class="img-fluid" alt="Responsive image" (click)="subcategories(categorie.id)">
+                                 <img src="{{categorie_image.c_image}}" alt="" class="img-fluid" alt="Responsive image">
                                  <h1 class="crexin-text mgb-0 mgt-10 fs-16 fw-700 text-center">{{categorie_image.c_name}}</h1>
                              </div>
                         </div>
                      </div>
-                     <div class="row mgl-0 mgr-0">
+                     <div class="row mgl-0 mgr-0" *ngIf="globalsearch">
                         <div class="col-md-4 my-3" (click)="subcategories(categorie_image.id,categorie_image.c_name)" *ngFor="let categorie_image of searchcategories">
                              <div class="text-center crexin-product-images">
                                  <img src="{{categorie_image.c_image}}" alt="" class="img-fluid" alt="Responsive image" (click)="subcategories(categorie.id)">

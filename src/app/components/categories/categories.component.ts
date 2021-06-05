@@ -24,6 +24,8 @@ export class CategoriesComponent implements OnInit {
   firstcategoriedatas: any;
   selectedItem: any;
   searchcategories: any;
+  categories = true;
+  globalsearch :boolean;
   constructor(private spinner: NgxSpinnerService,private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) { }
 
   ngOnInit(): void {
@@ -32,21 +34,36 @@ export class CategoriesComponent implements OnInit {
     //   this.firstcategoriedatas = res;
     //   this.loading = false;
     // });
-    // const headers= new HttpHeaders()
-    // .set('content-type', 'application/json')
-    // .set('Access-Control-Allow-Origin', '*')
-    // .set('Authorization',`Bearer ${this.auth_token}`);
-    // this.http.get<any>('https://superuser.crexin.com/api/searchcategories?category='+sessionStorage.getItem('search_categorie'),{'headers':headers}).pipe(shareReplay(1)).subscribe((res)=>{
-    //   console.log(res.categories);
-    //   this.searchcategories = res.categories;
-    //   // this.products = res.products;
-    //   this.loading = false;
-    // })
+  if(sessionStorage.getItem('global_search') === 'true'){
+    const headers= new HttpHeaders()
+    .set('content-type', 'application/json')
+    .set('Access-Control-Allow-Origin', '*')
+    .set('Authorization',`Bearer ${this.auth_token}`);
+    this.http.get<any>('https://superuser.crexin.com/api/searchcategories?category='+sessionStorage.getItem('search_categorie'),{'headers':headers}).pipe(shareReplay(1)).subscribe((res)=>{
+      console.log(res.categories);
+      if(res.categories.length === 0){
+         this.toastr.error(this.message,'No data found',{
+        positionClass: 'toast-top-center'
+       });
+      }
+     else{
+      this.searchcategories = res.categories;
+      // this.products = res.products;
+      sessionStorage.setItem('global_search', 'false');
+      this.globalsearch = true;
+      this.categories = false;
+      this.loading = false;
+     }
+    })
+  }
+  else{
     this.crexinservice.getallcategories().subscribe((res)=>{
       console.log(res.categories);
       this.allcategories = res.categories;
+      this.globalsearch = false;
       this.loading = false;
     });
+  }
   }
   categoriedetails(event,cat_id:any,categorie){
     // console.log(categorie);
@@ -90,12 +107,11 @@ export class CategoriesComponent implements OnInit {
       // this.products = res.products;
     })
   }
-  subcategories(id:any,name:any){
+  subcategories(id:any,name:any,categorie){
+    this.selectedItem = name;
     console.log(name);
     sessionStorage.setItem('cat_id', id);
     sessionStorage.setItem('cat_name', name);
-    this.c_active = false;
-    this.c_unactive = true;
     this.route.navigate(['/subcategories']);
   }
 }

@@ -78,8 +78,16 @@ export class HomeComponent implements OnInit {
   //   })
   // }
   search_button(search_categorie:any){
-    console.log(search_categorie);
-    sessionStorage.setItem('search_categorie', search_categorie);
-    this.router.navigate(['/categories'])
+    if(search_categorie){
+      console.log(search_categorie);
+      sessionStorage.setItem('search_categorie', search_categorie);
+      sessionStorage.setItem('global_search', 'true');
+      this.router.navigate(['/categories'])
+    }
+    else {
+      this.toastr.error(this.message,'Please search the any categoriy name',{
+        positionClass: 'toast-top-center'
+      });
+    }
   }
 }

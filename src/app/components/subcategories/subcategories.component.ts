@@ -23,7 +23,7 @@ export class SubcategoriesComponent implements OnInit {
   loading = true;
   d = true;
   p = false;
-  cat_name = sessionStorage.getItem('cat_name');
+  // cat_name = sessionStorage.getItem('cat_name');
   active = false;
   constructor(private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) { }
 
@@ -57,9 +57,15 @@ export class SubcategoriesComponent implements OnInit {
    })
 
   }
-  subcategories(event,cat_id:any,categorie){
+  // get cat_id(){
+  //   return sessionStorage.getItem('cat_id')
+  // }
+  get cat_name(){
+    return sessionStorage.getItem('cat_name')
+  }
+  subcategories(event,cat_id:any,name:any,categorie){
     // console.log(name);
-    // sessionStorage.setItem('cat_name', name);
+    sessionStorage.setItem('cat_name', name);
     this.selectedItem = categorie.c_name;
     //this.active = true; 
     sessionStorage.setItem('cat_id',cat_id);

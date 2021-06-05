@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { CrexinService } from 'src/app/services/crexin.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,10 +10,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
-  constructor() { }
+  allcategories: any;
+  selectedItem: any;
+  constructor(private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) { }
 
   ngOnInit(): void {
+    this.crexinservice.getallcategories().subscribe((res)=>{
+      console.log(res.categories);
+      this.allcategories = res.categories;
+      // this.loading = false;
+    });
   }
-
+  subcategories(event,id:any,name:any,categorie){
+    this.selectedItem = categorie.c_name;
+    console.log(name);
+    sessionStorage.setItem('cat_id', id);
+    sessionStorage.setItem('cat_name', name);
+    this.route.navigate(['/subcategories']);
+  }
 }
