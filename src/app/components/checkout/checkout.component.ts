@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 // import { constants } from 'node:buffer';
 import { shareReplay } from 'rxjs/operators';
 import { CrexinService } from 'src/app/services/crexin.service';
+import { CheckoutService } from '../../services/checkout.service';
 import { WindowRefService } from 'src/app/window-ref.service';
 declare var $:any;
 @Component({
@@ -105,7 +106,7 @@ export class CheckoutComponent implements OnInit {
   mobile = sessionStorage.getItem('phone')
   subcategory_name: any;
   subcategory_image: any;
-  constructor(private winRef: WindowRefService,private datePipe: DatePipe,private fb:FormBuilder, private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) { 
+  constructor(private checkoutservice:CheckoutService,private winRef: WindowRefService,private datePipe: DatePipe,private fb:FormBuilder, private toastr:ToastrService,private router:Router,private http:HttpClient,private activeroute:ActivatedRoute, private route:Router, private crexinservice:CrexinService) { 
     console.log(this.d_enddate);
   }
 
@@ -392,7 +393,7 @@ export class CheckoutComponent implements OnInit {
             company_state:this.Billing_Information.get('state').value,
           }
           console.log(data);
-          this.crexinservice.bookings(data).subscribe(res=>{
+          this.checkoutservice.bookings(data).subscribe(res=>{
             console.log(res);
             sessionStorage.setItem('b_id',res.response.id);
             sessionStorage.setItem('booked_id',res.response.booked_id)
@@ -438,7 +439,7 @@ export class CheckoutComponent implements OnInit {
             company_city:this.Billing_Information.get('city').value,
             company_state:this.Billing_Information.get('state').value,
           }
-          this.crexinservice.bookings(data).subscribe(res=>{
+          this.checkoutservice.bookings(data).subscribe(res=>{
             console.log(res);
             sessionStorage.setItem('b_id',res.response.id);
             sessionStorage.setItem('booked_id',res.response.booked_id)
@@ -489,12 +490,12 @@ export class CheckoutComponent implements OnInit {
             company_city:this.Billing_Information.get('city').value,
             company_state:this.Billing_Information.get('state').value,
           }
-          this.crexinservice.bookings(data).subscribe(res=>{
+          this.checkoutservice.bookings(data).subscribe(res=>{
             console.log(res);
             sessionStorage.setItem('b_id',res.response.id);
             sessionStorage.setItem('booked_id',res.response.booked_id)
             sessionStorage.setItem('booking_status',res.response.booking_status)
-            this.toastr.success(this.message,res.message,{
+            this.toastr.success(this.message,'You have successfully booked this equipment',{
               positionClass: 'toast-top-center'
           });
           this.router.navigate(['rent']);
